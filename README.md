@@ -51,14 +51,40 @@ Turistas nacionales e internacionales asistentes a los Juegos Panamericanos que 
 
 ## 6. Prototipo y Diseño
 
-El diseño inicial fue creado en **Figma**, con una propuesta centrada en la simplicidad, legibilidad y fácil acceso a la información.
+El diseño inicial del proyecto fue desarrollado en **Figma**, priorizando la **simplicidad**, **legibilidad** y **accesibilidad** de la información para ofrecer una experiencia de usuario fluida e intuitiva.  
 
-**Pantallas principales del prototipo:**
-- **Inicio:** Acceso a las categorías principales (Lugares, Eventos, Gastronomía, Transporte).  
-- **Detalle:** Muestra información completa de un elemento seleccionado (imagen, descripción, ubicación).  
-- **Perfil / Favoritos:** Representación del usuario y elementos guardados.
+El prototipo se centra en mostrar de manera clara los principales contenidos relacionados con los **Juegos Panamericanos en Perú**, organizados en distintas categorías: *Lugares*, *Eventos*, *Gastronomía* y *Transporte*.
 
-**Enlace al prototipo:** [Agregar enlace Figma aquí]
+### Descripción visual del prototipo
+
+El diseño utiliza un **estilo limpio y moderno**, con fondo oscuro y componentes blancos que resaltan el contenido principal (imágenes y texto).  
+El encabezado rojo con el logotipo de **TravelMarket** y la barra de búsqueda ofrecen una navegación directa e intuitiva.  
+
+Cada tarjeta incluye:
+- Una **imagen representativa** del lugar, evento o servicio.
+- El **nombre** y una **breve descripción**.
+- La **ubicación geográfica** o tipo de categoría (por ejemplo: *Aerolinea*, *Pollería*, *Turístico*).
+- Un **ícono de calificación**, que refuerza la confiabilidad del contenido.
+
+### Pantallas principales
+
+- **Inicio:** Muestra un mensaje de bienvenida, una sección de destacados y las categorías principales.  
+- **Lugares:** Presenta atractivos turísticos como Machu Picchu, el Malecón de Miraflores y la Plaza Mayor de Lima.  
+- **Eventos:** Contiene actividades deportivas de los Juegos Panamericanos, como atletismo, ciclismo y vóley.  
+- **Gastronomía:** Incluye restaurantes reconocidos como *La Granja Azul*, *Maido* y *Central*, con su respectiva descripción.  
+- **Transporte:** Ofrece información sobre medios de transporte como *LATAM Airlines*, *Metropolitano* y *Mirabus*.
+
+### Identidad visual
+
+- **Color principal:** Rojo (#FF0000), utilizado en la barra superior y acentos.  
+- **Colores secundarios:** Blanco, gris claro y negro, para mantener contraste y legibilidad.  
+- **Tipografía:** Sans-serif moderna, optimizada para lectura en pantallas móviles.  
+- **Estilo de íconos:** Minimalistas, con un trazo fino que refuerza la coherencia visual.
+
+
+### Enlace al prototipo
+[TravelMarket](https://www.figma.com/design/iXDlfKNys1IFMhit5DE8yc/TravelMarket?node-id=0-1&p=f&t=EKghsLoh65vKhPa7-0)
+
 
 ---
 
@@ -142,3 +168,4 @@ El proyecto se basa en una arquitectura modular, separando las responsabilidades
 
 > “Explora los Juegos Panamericanos con una sola aplicación.  
 > TravelMarket: tu guía digital para descubrir lo mejor de cada destino.”
+
