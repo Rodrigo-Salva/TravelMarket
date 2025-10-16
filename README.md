@@ -169,3 +169,4 @@ El proyecto se basa en una arquitectura modular, separando las responsabilidades
 > “Explora los Juegos Panamericanos con una sola aplicación.  
 > TravelMarket: tu guía digital para descubrir lo mejor de cada destino.”
 
+
