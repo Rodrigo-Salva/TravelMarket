@@ -12,40 +12,30 @@ import com.proyecto.travelmarket.navigation.Screen
 import com.proyecto.travelmarket.ui.theme.*
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun PerfilScreen(navController: NavController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = BlancoDetalle
+        color = Blanco
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize()
         ) {
             Text(
-                text = "Pantalla Home",
+                text = "Pantalla Perfil",
                 style = MaterialTheme.typography.headlineMedium,
                 color = Rojo
             )
             Spacer(modifier = Modifier.height(20.dp))
             Button(
-                onClick = { navController.navigate(Screen.Detalle.route) },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Rojo,
-                    contentColor = Blanco
-                )
-            ) {
-                Text("Ir a Detalle")
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            Button(
-                onClick = { navController.navigate(Screen.Perfil.route) },
+                onClick = { navController.navigate(Screen.Home.route) },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Gris,
                     contentColor = Color.Black
                 )
             ) {
-                Text("Ir a Perfil")
+                Text("Volver al Home")
             }
         }
     }

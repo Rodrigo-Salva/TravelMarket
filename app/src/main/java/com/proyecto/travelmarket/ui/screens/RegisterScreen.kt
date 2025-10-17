@@ -19,22 +19,25 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.proyecto.travelmarket.navigation.Screen
 import com.proyecto.travelmarket.ui.theme.* @Composable
-fun LoginScreen(navController: NavController) {
-    var user by remember { mutableStateOf("") }
+fun RegisterScreen(navController: NavController) {
+    var nombre by remember { mutableStateOf("") }
+    var usuario by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirm by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Rojo) // El fondo de la pantalla completa es ROJO
     ) {
-        // 1. SECCIÓN ROJA SUPERIOR con elementos
+        // 1. SECCIÓN ROJA SUPERIOR con elementos (Ajuste de Centrado y Flecha)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                // Altura para centrar el nombre y dar espacio a la flecha
                 .height(150.dp)
                 .padding(horizontal = 24.dp, vertical = 16.dp),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center // Centrado global
         ) {
             // *** BOTÓN DE RETROCESO (Círculo Blanco con Flecha Negra) ***
             Surface(
@@ -43,6 +46,7 @@ fun LoginScreen(navController: NavController) {
                 modifier = Modifier
                     .size(40.dp)
                     .align(Alignment.TopStart)
+                    // Mismos ajustes de offset que la pantalla de Login para bajar la flecha.
                     .offset(x = (-8).dp, y = 30.dp)
             ) {
                 Box(
@@ -60,7 +64,7 @@ fun LoginScreen(navController: NavController) {
                 }
             }
 
-            // Logo TravelMarket
+            // Logo TravelMarket (Centrado en el área roja)
             Text(
                 "TravelMarket",
                 color = Blanco,
@@ -68,16 +72,17 @@ fun LoginScreen(navController: NavController) {
                     fontWeight = FontWeight.Normal,
                     fontSize = 36.sp
                 ),
+                // Alignment.Center aquí asegura que el nombre esté al medio del Box
                 modifier = Modifier.align(Alignment.Center)
             )
         }
 
-        // 2. SECCIÓN BLANCA DEL FORMULARIO (Tarjeta superpuesta en la parte inferior)
+        // 2. SECCIÓN BLANCA DEL FORMULARIO (Tarjeta superpuesta)
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                // AHORA TIENE EL MISMO TAMAÑO QUE REGISTER SCREEN
+                // Se mantiene la altura de 0.8f para acomodar los 4 campos y el botón
                 .fillMaxHeight(0.8f),
             color = Blanco,
             shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
@@ -104,15 +109,15 @@ fun LoginScreen(navController: NavController) {
                         fontWeight = FontWeight.Bold,
                         fontSize = 32.sp
                     ),
-                    modifier = Modifier.padding(bottom = 32.dp)
+                    modifier = Modifier.padding(bottom = 24.dp)
                 )
 
-                // CAMPO USUARIO
-                Text("Usuario:", style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Normal))
+                // CAMPO NOMBRE COMPLETO
+                Text("Nombre completo:", style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Normal))
                 Spacer(modifier = Modifier.height(4.dp))
                 TextField(
-                    value = user,
-                    onValueChange = { user = it },
+                    value = nombre,
+                    onValueChange = { nombre = it },
                     modifier = Modifier.fillMaxWidth(),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Gris,
@@ -124,7 +129,26 @@ fun LoginScreen(navController: NavController) {
                     shape = RoundedCornerShape(50)
                 )
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // CAMPO USUARIO
+                Text("Usuario:", style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Normal))
+                Spacer(modifier = Modifier.height(4.dp))
+                TextField(
+                    value = usuario,
+                    onValueChange = { usuario = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Gris,
+                        unfocusedContainerColor = Gris,
+                        disabledContainerColor = Gris,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                    ),
+                    shape = RoundedCornerShape(50)
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
 
                 // CAMPO CONTRASEÑA
                 Text("Contraseña:", style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Normal))
@@ -144,9 +168,29 @@ fun LoginScreen(navController: NavController) {
                     shape = RoundedCornerShape(50)
                 )
 
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-                // BOTÓN INICIAR SESIÓN
+                // CAMPO CONFIRMA CONTRASEÑA
+                Text("Confirma tu contraseña:", style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Normal))
+                Spacer(modifier = Modifier.height(4.dp))
+                TextField(
+                    value = confirm,
+                    onValueChange = { confirm = it },
+                    visualTransformation = PasswordVisualTransformation(),
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Gris,
+                        unfocusedContainerColor = Gris,
+                        disabledContainerColor = Gris,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                    ),
+                    shape = RoundedCornerShape(50)
+                )
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                // BOTÓN REGÍSTRATE
                 Button(
                     onClick = { navController.navigate(Screen.Home.route) },
                     modifier = Modifier
@@ -156,7 +200,7 @@ fun LoginScreen(navController: NavController) {
                     shape = RoundedCornerShape(50)
                 ) {
                     Text(
-                        "Iniciar Sesión",
+                        "Regístrate",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -164,21 +208,21 @@ fun LoginScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // ENLACE REGÍSTRATE
+                // ENLACE INICIA SESIÓN
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        "¿No tienes cuenta? ",
+                        "¿Ya tienes cuenta? ",
                         color = Color.Black,
                         fontSize = 14.sp
                     )
                     Text(
-                        "Regístrate",
+                        "Iniciar Sesión",
                         color = Rojo,
                         fontSize = 14.sp,
-                        modifier = Modifier.clickable { navController.navigate(Screen.Register.route) }
+                        modifier = Modifier.clickable { navController.navigate(Screen.Login.route) }
                     )
                 }
             }
