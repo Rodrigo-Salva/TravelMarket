@@ -90,10 +90,27 @@ Cada tarjeta incluye:
 
 ## 7. Arquitectura del Proyecto
 
-El proyecto se basa en una arquitectura modular, separando las responsabilidades en capas para facilitar la escalabilidad y el mantenimiento:
+```
+com.proyecto.travelmarket/
+├── data/                    
+├── model/                   
+├── navigation/              
+│   ├── Screen.kt
+│   ├── BottomNavItem.kt
+│   └── NavGraph.kt
+├── ui/                      
+│   ├── MainScreen.kt        
+│   └── screens/             
+│       ├── LoginScreen.kt
+│       ├── HomeScreen.kt
+│       ├── LugaresScreen.kt
+│       ├── EventosScreen.kt
+│       ├── GastronomiaScreen.kt
+│       ├── TransporteScreen.kt
+│       └── DetalleScreen.kt
+└── MainActivity.kt          
 
-<img width="900" height="220" alt="image" src="https://github.com/user-attachments/assets/7ba7a17e-53b2-4422-a727-912081536b50" />
-
+```
 
 ---
 

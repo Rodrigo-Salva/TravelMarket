@@ -1,2 +1,2 @@
-package com.proyecto.travelmarket.ui.sreens
+package com.proyecto.travelmarket.ui.screens
 
