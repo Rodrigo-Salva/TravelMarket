@@ -18,5 +18,9 @@ fun NavGraph(navController: NavHostController) {
         composable(Screen.Home.route) { HomeScreen(navController) }
         composable(Screen.Detalle.route) { DetalleScreen(navController) }
         composable(Screen.Perfil.route) { PerfilScreen(navController) }
+        composable("lugares") { LugaresScreen(navController) }
+        composable("eventos") { EventosScreen(navController) }
+        composable("gastronomia") { GastronomiaScreen(navController) }
+        composable("transporte") { TransporteScreen(navController) }
     }
 }
