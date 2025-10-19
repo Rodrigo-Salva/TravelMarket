@@ -1,41 +1,121 @@
 package com.proyecto.travelmarket.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.proyecto.travelmarket.model.Transporte
+import com.proyecto.travelmarket.ui.viewmodel.TransporteViewModel
 
 @Composable
-fun TransporteScreen(navController: NavController) {
-    Scaffold(
-        bottomBar = {
-            BottomNavigationBar(
-                navController = navController,
-                selectedItem = 4
-            )
-        }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .background(Color(0xFFE8E8E8)),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+fun TransporteScreen(
+    navController: NavController,
+    viewModel: TransporteViewModel = viewModel()
+) {
+    val transportes by viewModel.transportes.collectAsState()
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            color = MaterialTheme.colorScheme.primaryContainer
         ) {
             Text(
-                text = "Transporte",
-                fontSize = 32.sp,
+                text = "Transporte en Lima",
+                style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                modifier = Modifier.padding(16.dp)
             )
+        }
+
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            items(transportes) { transporte ->
+                TransporteCard(
+                    transporte = transporte,
+                    onClick = { navController.navigate("detalle/${transporte.id}/transporte") }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun TransporteCard(transporte: Transporte, onClick: () -> Unit) {
+    ElevatedCard(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth(),
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 3.dp),
+        shape = RoundedCornerShape(12.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = transporte.nombre,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f)
+                )
+                Text(
+                    text = "⭐ ${transporte.rating}",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = transporte.descripcion,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text(
+                        text = "🚌 ${transporte.tipo}",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    Text(
+                        text = "🗺️ ${transporte.ruta}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                    Text(
+                        text = "🕐 ${transporte.horario}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                }
+                Text(
+                    text = transporte.precio?.let { "S/ $it" } ?: "Consultar",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
         }
     }
 }
