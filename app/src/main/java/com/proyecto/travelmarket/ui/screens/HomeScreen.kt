@@ -1,359 +1,255 @@
 package com.proyecto.travelmarket.ui.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.proyecto.travelmarket.R
-import com.proyecto.travelmarket.ui.theme.Blanco
-import com.proyecto.travelmarket.ui.theme.Rojo
+import com.proyecto.travelmarket.model.*
+import com.proyecto.travelmarket.ui.viewmodel.HomeViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController) {
-    var searchText by remember { mutableStateOf("") }
-    var selectedTab by remember { mutableStateOf("Destacados") }
+fun HomeScreen(
+    navController: NavController,
+    viewModel: HomeViewModel = viewModel()
+) {
+    val destacados by viewModel.destacados.collectAsState()
 
-    Scaffold(
-        topBar = {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Rojo)
-                    .padding(16.dp)
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        // Banner de bienvenida
+        item {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                ),
+                shape = RoundedCornerShape(12.dp)
             ) {
-                // Header con título y menú
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Column {
-                        Text(
-                            text = "TravelMarket",
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Blanco,
-                            style = MaterialTheme.typography.headlineMedium
-                        )
-                    }
-                    IconButton(onClick = { }) {
-                        Icon(
-                            imageVector = Icons.Default.MoreVert,
-                            contentDescription = "Menú",
-                            tint = Blanco
-                        )
-                    }
-                }
-
-                Text(
-                    text = "Lima - Juegos Panamericanos",
-                    fontSize = 16.sp,
-                    color = Blanco,
-                    modifier = Modifier.padding(vertical = 8.dp)
-                )
-
-                // Barra de búsqueda
-                OutlinedTextField(
-                    value = searchText,
-                    onValueChange = { searchText = it },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    placeholder = { Text("Busca a Nivel Nacional") },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = "Buscar"
-                        )
-                    },
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = Blanco,
-                        unfocusedContainerColor = Blanco,
-                        focusedBorderColor = Blanco,
-                        unfocusedBorderColor = Blanco
-                    ),
-                    shape = RoundedCornerShape(24.dp)
-                )
-            }
-        },
-        bottomBar = {
-            BottomNavigationBar(
-                navController = navController,
-                selectedItem = 2
-            )
-        }
-    ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .background(Color(0xFFE8E8E8))
-        ) {
-            // Banner de bienvenida
-            item {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFFD9D9D9)),
-                    shape = RoundedCornerShape(12.dp)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(20.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "¡Bienvenido a Lima!",
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = "Descubre los mejores lugares, eventos y sabores de Perú durante los Juegos Panamericanos",
-                            fontSize = 14.sp,
-                            color = Color.Black,
-                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
-                        )
-                    }
-                }
-            }
-
-            // Tabs: Destacados / Mejor valorados
-            item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                Column(
+                    modifier = Modifier.padding(16.dp)
                 ) {
                     Text(
-                        text = "Destacados",
-                        fontSize = 18.sp,
+                        text = "¡Bienvenido a Lima!",
+                        style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
-                        color = if (selectedTab == "Destacados") Color.Black else Color.Gray,
-                        modifier = Modifier.clickable { selectedTab = "Destacados" }
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
                     )
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = null,
-                            tint = Color(0xFFFFD700),
-                            modifier = Modifier.size(20.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = "Mejor valorados",
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Normal,
-                            color = if (selectedTab == "Mejor valorados") Color.Black else Color.Gray,
-                            modifier = Modifier.clickable { selectedTab = "Mejor valorados" }
-                        )
-                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Descubre los mejores lugares, eventos y sabores de Perú durante los Juegos Panamericanos",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
                 }
             }
+        }
 
-            // Tarjetas de destinos
-            items(3) { index ->
-                DestinoCard(
-                    nombre = when(index) {
-                        0 -> "Machu Picchu"
-                        1 -> "Plaza Mayor de Lima"
-                        else -> "Circuito Mágico del Agua"
-                    },
-                    descripcion = when(index) {
-                        0 -> "La ciudadela inca más famosa del mundo, Patrimonio de la Humanidad y una de las Siete Maravillas del Mundo"
-                        1 -> "Corazón del Centro Histórico de Lima, Patrimonio de la Humanidad. Rodeada del Palacio de Gobierno"
-                        else -> "Complejo de fuentes ornamentales"
-                    },
-                    ubicacion = when(index) {
-                        0 -> "Aguas Calientes, Cusco"
-                        1 -> "Jr. de la Unión, Cercado de Lima"
-                        else -> "Parque de la Reserva, Lima"
-                    },
-                    precio = when(index) {
-                        0 -> "S/ 152"
-                        1 -> "S/ 0"
-                        else -> "S/ 4"
-                    },
-                    valoracion = when(index) {
-                        0 -> "5"
-                        else -> "4.8"
-                    },
-                    imagenRes = when(index) {
-                        0 -> R.drawable.img2  // Machu Picchu
-                        1 -> R.drawable.img3  // Plaza de Lima
-                        else -> R.drawable.img4  // Parque de las Aguas
-                    },
-                    navController = navController
+        // Header de destacados
+        item {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Destacados",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "⭐ Mejor valorados",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
+        }
+
+        // Lista de destacados con datos dinámicos
+        items(destacados) { item ->
+            ItemCard(
+                item = item,
+                onClick = {
+                    val (tipo, id) = getTypeAndId(item)
+                    navController.navigate("detalle/$id/$tipo")
+                }
+            )
         }
     }
 }
 
 @Composable
-fun DestinoCard(
-    nombre: String,
-    descripcion: String,
-    ubicacion: String,
-    precio: String,
-    valoracion: String,
-    imagenRes: Int,
-    navController: NavController
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-            .clickable { navController.navigate("detalle") },
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        colors = CardDefaults.cardColors(containerColor = Blanco)
+fun ItemCard(item: Any, onClick: () -> Unit) {
+    ElevatedCard(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth(),
+        elevation = CardDefaults.elevatedCardElevation(
+            defaultElevation = 4.dp
+        ),
+        shape = RoundedCornerShape(12.dp)
     ) {
-        Column {
-            // Imagen del destino
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = imagenRes),
-                    contentDescription = nombre,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
-                
-                // Badge de valoración
-                Surface(
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(12.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    color = Blanco
-                ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            when (item) {
+                is Lugar -> {
+                    Text(
+                        text = item.nombre,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = item.descripcion,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
                     Row(
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = null,
-                            tint = Color(0xFFFFD700),
-                            modifier = Modifier.size(16.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = valoracion,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold
+                            text = "📍 ${item.ubicacion}",
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                        Text(
+                            text = if (item.precio > 0) "S/ ${item.precio}" else "Gratis",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
                         )
                     }
-                }
-            }
-
-            // Información del destino
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
                     Text(
-                        text = nombre,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black
-                    )
-                    Text(
-                        text = precio,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Gray
+                        text = "⭐ ${item.rating}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = descripcion,
-                    fontSize = 14.sp,
-                    color = Color.DarkGray,
-                    lineHeight = 20.sp
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.LocationOn,
-                        contentDescription = null,
-                        tint = Color.Gray,
-                        modifier = Modifier.size(16.dp)
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
+                is Evento -> {
                     Text(
-                        text = ubicacion,
-                        fontSize = 12.sp,
-                        color = Color.Gray
+                        text = item.nombre,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = item.descripcion,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "🏟️ ${item.estadio}",
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                        Text(
+                            text = "S/ ${item.precio}",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    Text(
+                        text = "⭐ ${item.rating}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                is Restaurante -> {
+                    Text(
+                        text = item.nombre,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = item.descripcion,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "🍽️ ${item.tipoCocina}",
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                        Text(
+                            text = "S/ ${item.precio}",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    Text(
+                        text = "⭐ ${item.rating}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                is Transporte -> {
+                    Text(
+                        text = item.nombre,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = item.descripcion,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "🚌 ${item.tipo}",
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                        Text(
+                            text = item.precio?.let { "S/ $it" } ?: "Consultar",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    Text(
+                        text = "⭐ ${item.rating}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
             }
         }
+    }
+}
+
+fun getTypeAndId(item: Any): Pair<String, Int> {
+    return when (item) {
+        is Lugar -> "lugar" to item.id
+        is Evento -> "evento" to item.id
+        is Restaurante -> "restaurante" to item.id
+        is Transporte -> "transporte" to item.id
+        else -> "lugar" to 0
     }
 }
