@@ -3,8 +3,10 @@ package com.proyecto.travelmarket.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Visibility
@@ -17,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -25,15 +28,23 @@ import com.proyecto.travelmarket.navigation.Screen
 import com.proyecto.travelmarket.ui.theme.Blanco
 import com.proyecto.travelmarket.ui.theme.Rojo
 import com.proyecto.travelmarket.ui.viewmodel.AuthViewModel
+import com.proyecto.travelmarket.ui.viewmodel.LoginResult
+import kotlinx.coroutines.delay
 
 @Composable
 fun LoginScreen(navController: NavController, viewModel: AuthViewModel = viewModel()) {
     var user by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    // Estado para controlar la visibilidad (el "ojito")
     var passwordVisible by remember { mutableStateOf(false) }
 
+    // Estados para mostrar errores individuales
+    var userError by remember { mutableStateOf(false) }
+    var passwordError by remember { mutableStateOf(false) }
+    var generalError by remember { mutableStateOf("") }
+    var showLoadingDialog by remember { mutableStateOf(false) }
+
     val loginState by viewModel.loginState.collectAsState()
+    val scrollState = rememberScrollState()
 
     val Gris = Color(0xFFEEEEEE)
 
@@ -98,6 +109,7 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel = viewMod
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .verticalScroll(scrollState)
                     .padding(horizontal = 40.dp, vertical = 24.dp),
                 horizontalAlignment = Alignment.Start
             ) {
@@ -123,7 +135,11 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel = viewMod
                 Spacer(modifier = Modifier.height(4.dp))
                 TextField(
                     value = user,
-                    onValueChange = { user = it },
+                    onValueChange = {
+                        user = it
+                        userError = false
+                        generalError = ""
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Gris,
@@ -132,33 +148,44 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel = viewMod
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent
                     ),
+                    textStyle = MaterialTheme.typography.bodyLarge.copy(
+                        color = Color.Black,
+                        fontSize = 16.sp
+                    ),
                     shape = RoundedCornerShape(50),
                     singleLine = true
                 )
+                if (userError) {
+                    Text(
+                        text = "Debe llenar el campo de usuario",
+                        color = Color.Red,
+                        fontSize = 12.sp,
+                        modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // CAMPO CONTRASEÑA (IMPLEMENTACIÓN DEL OJITO)
+                // CAMPO CONTRASEÑA
                 Text("Contraseña:", style = MaterialTheme.typography.bodyLarge)
                 Spacer(modifier = Modifier.height(4.dp))
                 TextField(
                     value = password,
-                    onValueChange = { password = it },
-
-                    // 1. Alterna la transformación visual
+                    onValueChange = {
+                        password = it
+                        passwordError = false
+                        generalError = ""
+                    },
                     visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-
-                    // 2. Añade el ícono interactivo
                     trailingIcon = {
                         val image = if (passwordVisible)
-                            Icons.Filled.Visibility // Ícono de ojo abierto
-                        else Icons.Filled.VisibilityOff // Ícono de ojo tachado
+                            Icons.Filled.Visibility
+                        else Icons.Filled.VisibilityOff
 
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
                             Icon(imageVector = image, contentDescription = if (passwordVisible) "Ocultar Contraseña" else "Mostrar Contraseña")
                         }
                     },
-
                     modifier = Modifier.fillMaxWidth(),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Gris,
@@ -167,20 +194,65 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel = viewMod
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent
                     ),
+                    textStyle = MaterialTheme.typography.bodyLarge.copy(
+                        color = Color.Black,
+                        fontSize = 16.sp
+                    ),
                     shape = RoundedCornerShape(50),
                     singleLine = true
                 )
+                if (passwordError) {
+                    Text(
+                        text = "Debe llenar el campo de contraseña",
+                        color = Color.Red,
+                        fontSize = 12.sp,
+                        modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+                    )
+                }
+
+                // Mostrar mensaje de error general
+                if (generalError.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        text = generalError,
+                        color = Color.Red,
+                        fontSize = 14.sp,
+                        modifier = Modifier.padding(start = 16.dp)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(40.dp))
 
                 // BOTÓN LOGIN
                 Button(
-                    onClick = { viewModel.login(user, password) },
+                    onClick = {
+                        userError = false
+                        passwordError = false
+                        generalError = ""
+
+                        when {
+                            user.isEmpty() && password.isEmpty() -> {
+                                userError = true
+                                passwordError = true
+                            }
+                            user.isEmpty() -> {
+                                userError = true
+                            }
+                            password.isEmpty() -> {
+                                passwordError = true
+                            }
+                            else -> {
+                                showLoadingDialog = true
+                                viewModel.login(user, password)
+                            }
+                        }
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Rojo, contentColor = Blanco),
-                    shape = RoundedCornerShape(50)
+                    shape = RoundedCornerShape(50),
+                    enabled = !showLoadingDialog
                 ) {
                     Text("Iniciar Sesión", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
@@ -202,28 +274,61 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel = viewMod
                         }
                     )
                 }
+            }
+        }
+    }
 
-                Spacer(modifier = Modifier.height(12.dp))
+    // Dialog de "Iniciando sesión"
+    if (showLoadingDialog) {
+        AlertDialog(
+            onDismissRequest = { },
+            title = {
+                Text(
+                    "Iniciando sesión",
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            },
+            text = {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(40.dp),
+                        color = Rojo
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("Por favor espera...")
+                }
+            },
+            confirmButton = { }
+        )
+    }
 
-                // Mostrar feedback de login
-                when (loginState) {
-                    true -> {
-                        LaunchedEffect(Unit) {
-                            navController.navigate(Screen.Home.route) {
-                                popUpTo(Screen.Login.route) { inclusive = true }
-                            }
-                        }
-                    }
-                    false -> {
-                        Text(
-                            "Usuario o contraseña incorrectos",
-                            color = Color.Red,
-                            modifier = Modifier.padding(top = 12.dp)
-                        )
-                    }
-                    null -> {}
+    // Manejo del estado de login
+    LaunchedEffect(loginState) {
+        when (loginState) {
+            is LoginResult.Success -> {
+                delay(1500)
+                showLoadingDialog = false
+                viewModel.resetLoginState()
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Login.route) { inclusive = true }
                 }
             }
+            is LoginResult.UserNotFound -> {
+                showLoadingDialog = false
+                generalError = "La cuenta no existe. Por favor regístrate primero"
+                viewModel.resetLoginState()
+            }
+            is LoginResult.WrongPassword -> {
+                showLoadingDialog = false
+                generalError = "Contraseña incorrecta"
+                viewModel.resetLoginState()
+            }
+            is LoginResult.Idle -> { }
         }
     }
 }

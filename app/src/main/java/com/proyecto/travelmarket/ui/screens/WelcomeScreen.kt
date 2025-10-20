@@ -2,7 +2,7 @@ package com.proyecto.travelmarket.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background // Importar para usar el modificador .background
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -30,18 +30,14 @@ fun WelcomeScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            // *** MODIFICACIÓN AQUÍ ***
+            // IMAGEN MÁS GRANDE
             Image(
-                // 1. Asegúrate de que esta sea la referencia a tu imagen de mascota
-                painter = painterResource(id = R.drawable.img), // ¡Reemplaza con el nombre de tu archivo!
+                painter = painterResource(id = R.drawable.img_1),
                 contentDescription = "Mascota Panamericanos",
                 modifier = Modifier
-                    .size(180.dp)
+                    .size(300.dp) // Aumentado de 180.dp a 280.dp
                     .padding(top = 40.dp, bottom = 12.dp)
-                    // 2. Añade un fondo blanco a la imagen de la mascota
-                    .background(Blanco)
             )
-            // *** FIN MODIFICACIÓN ***
 
             Text(
                 "TravelMarket",
