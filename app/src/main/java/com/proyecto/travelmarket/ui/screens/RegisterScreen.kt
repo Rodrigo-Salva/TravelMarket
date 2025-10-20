@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.proyecto.travelmarket.navigation.Screen
+import com.proyecto.travelmarket.ui.theme.Blanco
+import com.proyecto.travelmarket.ui.theme.Rojo
 import com.proyecto.travelmarket.ui.viewmodel.AuthViewModel
 
 @Composable
@@ -35,8 +37,6 @@ fun RegisterScreen(navController: NavController, viewModel: AuthViewModel = view
     var passwordVisible by remember { mutableStateOf(false) }
     var confirmVisible by remember { mutableStateOf(false) }
 
-    val Rojo = Color(0xFFC62828)
-    val Blanco = Color.White
     val Gris = Color(0xFFEEEEEE)
 
     Box(

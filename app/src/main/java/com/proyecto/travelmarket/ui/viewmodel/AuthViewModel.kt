@@ -12,6 +12,9 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _loginState = MutableStateFlow<Boolean?>(null)
     val loginState: StateFlow<Boolean?> = _loginState
+    
+    private val _currentUser = MutableStateFlow<User?>(null)
+    val currentUser: StateFlow<User?> = _currentUser
 
     fun register(nombre: String, usuario: String, password: String) {
         viewModelScope.launch {
@@ -36,6 +39,16 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
                 }
 
             _loginState.value = loginSuccessful
+            
+            // Si el login es exitoso, guardar el usuario actual
+            if (loginSuccessful && user != null) {
+                _currentUser.value = user
+            }
         }
+    }
+    
+    fun logout() {
+        _currentUser.value = null
+        _loginState.value = null
     }
 }

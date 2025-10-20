@@ -5,13 +5,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.proyecto.travelmarket.data.db.AppDatabase
 import com.proyecto.travelmarket.data.repository.UserRepository
 import com.proyecto.travelmarket.ui.screens.*
 import com.proyecto.travelmarket.ui.viewmodel.AuthViewModel
 import com.proyecto.travelmarket.ui.viewmodel.AuthViewModelFactory
+import com.proyecto.travelmarket.ui.viewmodel.FavoritosViewModel
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -25,6 +28,9 @@ fun NavGraph(navController: NavHostController) {
     val authViewModel: AuthViewModel = viewModel(
         factory = AuthViewModelFactory(repository)
     )
+    
+    // 🔹 Crear ViewModel de favoritos compartido
+    val favoritosViewModel: FavoritosViewModel = viewModel()
 
     NavHost(
         navController = navController,
@@ -36,12 +42,23 @@ fun NavGraph(navController: NavHostController) {
         composable(Screen.Login.route) { LoginScreen(navController, authViewModel) }
         composable(Screen.Register.route) { RegisterScreen(navController, authViewModel) }
 
-        composable(Screen.Home.route) { HomeScreen(navController) }
-        composable(Screen.Detalle.route) { DetalleScreen(navController) }
+        composable(Screen.Home.route) { HomeScreen(navController, favoritosViewModel, authViewModel) }
+        composable(
+            route = "detalle/{itemId}/{tipo}",
+            arguments = listOf(
+                navArgument("itemId") { type = NavType.IntType },
+                navArgument("tipo") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val itemId = backStackEntry.arguments?.getInt("itemId") ?: 0
+            val tipo = backStackEntry.arguments?.getString("tipo") ?: ""
+            DetalleScreen(navController, itemId, tipo, favoritosViewModel)
+        }
         composable(Screen.Perfil.route) { PerfilScreen(navController) }
-        composable("lugares") { LugaresScreen(navController) }
-        composable("eventos") { EventosScreen(navController) }
-        composable("gastronomia") { GastronomiaScreen(navController) }
-        composable("transporte") { TransporteScreen(navController) }
+        composable("lugares") { LugaresScreen(navController, favoritosViewModel, authViewModel) }
+        composable("eventos") { EventosScreen(navController, favoritosViewModel, authViewModel) }
+        composable("gastronomia") { GastronomiaScreen(navController, favoritosViewModel, authViewModel) }
+        composable("transporte") { TransporteScreen(navController, favoritosViewModel, authViewModel) }
+        composable("favoritos") { FavoritosScreen(navController, favoritosViewModel, authViewModel) }
     }
 }

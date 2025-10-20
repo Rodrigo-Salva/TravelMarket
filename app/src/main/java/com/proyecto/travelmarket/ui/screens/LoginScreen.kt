@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.proyecto.travelmarket.navigation.Screen
+import com.proyecto.travelmarket.ui.theme.Blanco
+import com.proyecto.travelmarket.ui.theme.Rojo
 import com.proyecto.travelmarket.ui.viewmodel.AuthViewModel
 
 @Composable
@@ -33,8 +35,6 @@ fun LoginScreen(navController: NavController, viewModel: AuthViewModel = viewMod
 
     val loginState by viewModel.loginState.collectAsState()
 
-    val Rojo = Color(0xFFC62828)
-    val Blanco = Color.White
     val Gris = Color(0xFFEEEEEE)
 
     Box(

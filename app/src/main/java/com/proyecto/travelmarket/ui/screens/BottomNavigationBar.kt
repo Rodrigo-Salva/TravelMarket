@@ -2,7 +2,7 @@ package com.proyecto.travelmarket.ui.screens
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,10 +19,11 @@ fun BottomNavigationBar(
         containerColor = Blanco,
         modifier = Modifier.height(56.dp)
     ) {
+        // 1. Ubicación / Lugares (resaltado en rojo cuando está seleccionado)
         NavigationBarItem(
             icon = {
                 Icon(
-                    imageVector = Icons.Default.Place,
+                    imageVector = Icons.Outlined.LocationOn,
                     contentDescription = "Lugares"
                 )
             },
@@ -35,14 +36,16 @@ fun BottomNavigationBar(
             },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Rojo,
-                unselectedIconColor = androidx.compose.ui.graphics.Color.Gray,
+                unselectedIconColor = androidx.compose.ui.graphics.Color.Black,
                 indicatorColor = Blanco
             )
         )
+        
+        // 2. Logros / Eventos (trofeo)
         NavigationBarItem(
             icon = {
                 Icon(
-                    imageVector = Icons.Default.Star,
+                    imageVector = Icons.Outlined.EmojiEvents,
                     contentDescription = "Eventos"
                 )
             },
@@ -55,14 +58,16 @@ fun BottomNavigationBar(
             },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Rojo,
-                unselectedIconColor = androidx.compose.ui.graphics.Color.Gray,
+                unselectedIconColor = androidx.compose.ui.graphics.Color.Black,
                 indicatorColor = Blanco
             )
         )
+        
+        // 3. Inicio / Home
         NavigationBarItem(
             icon = {
                 Icon(
-                    imageVector = Icons.Default.Home,
+                    imageVector = Icons.Outlined.Home,
                     contentDescription = "Inicio"
                 )
             },
@@ -75,14 +80,16 @@ fun BottomNavigationBar(
             },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Rojo,
-                unselectedIconColor = androidx.compose.ui.graphics.Color.Gray,
+                unselectedIconColor = androidx.compose.ui.graphics.Color.Black,
                 indicatorColor = Blanco
             )
         )
+        
+        // 4. Restaurante / Gastronomía
         NavigationBarItem(
             icon = {
                 Icon(
-                    imageVector = Icons.Default.AccountBox,
+                    imageVector = Icons.Outlined.Restaurant,
                     contentDescription = "Gastronomía"
                 )
             },
@@ -95,14 +102,16 @@ fun BottomNavigationBar(
             },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Rojo,
-                unselectedIconColor = androidx.compose.ui.graphics.Color.Gray,
+                unselectedIconColor = androidx.compose.ui.graphics.Color.Black,
                 indicatorColor = Blanco
             )
         )
+        
+        // 5. Transporte / Movilidad (bus)
         NavigationBarItem(
             icon = {
                 Icon(
-                    imageVector = Icons.Default.Face,
+                    imageVector = Icons.Outlined.DirectionsBus,
                     contentDescription = "Transporte"
                 )
             },
@@ -115,7 +124,7 @@ fun BottomNavigationBar(
             },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Rojo,
-                unselectedIconColor = androidx.compose.ui.graphics.Color.Gray,
+                unselectedIconColor = androidx.compose.ui.graphics.Color.Black,
                 indicatorColor = Blanco
             )
         )
