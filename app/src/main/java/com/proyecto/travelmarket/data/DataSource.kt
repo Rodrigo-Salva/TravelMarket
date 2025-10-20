@@ -3,14 +3,14 @@ package com.proyecto.travelmarket.data
 import com.proyecto.travelmarket.model.*
 
 object DataSource {
-    
+
     // ========== LUGARES TURÍSTICOS ==========
     val lugares = listOf(
         Lugar(
             id = 1,
             nombre = "Machu Picchu",
             descripcion = "La ciudadela Inca más famosa del mundo, Patrimonio de la Humanidad y una de las Siete Maravillas del Mundo",
-            descripcionDetallada = "Machu Picchu es una ciudadela inca situada en lo alto de las montañas de los Andes peruanos, construida en el siglo XV. Este impresionante sitio arqueológico es considerado una obra maestra de la arquitectura inca y ofrece vistas espectaculares del Valle Sagrado. La combinación perfecta de ingeniería, naturaleza y misticismo hace de Machu Picchu un destino imperdible para cualquier visitante de Perú.",
+            descripcionDetallada = "Machu Picchu es una ciudadela inca situada en lo alto de los Andes peruanos, construida en el siglo XV. Este impresionante sitio arqueológico es considerado una obra maestra de la arquitectura inca y ofrece vistas espectaculares del Valle Sagrado. La combinación perfecta de ingeniería, naturaleza y misticismo hace de Machu Picchu un destino imperdible para cualquier visitante de Perú.",
             ubicacion = "Aguas Calientes, Cusco",
             precio = 152,
             rating = 5.0,
@@ -46,7 +46,7 @@ object DataSource {
             destacado = true
         )
     )
-    
+
     // ========== EVENTOS DEPORTIVOS ==========
     val eventos = listOf(
         Evento(
@@ -95,7 +95,7 @@ object DataSource {
             destacado = true
         )
     )
-    
+
     // ========== RESTAURANTES ==========
     val restaurantes = listOf(
         Restaurante(
@@ -141,7 +141,7 @@ object DataSource {
             destacado = true
         )
     )
-    
+
     // ========== TRANSPORTES ==========
     val transportes = listOf(
         Transporte(
@@ -187,7 +187,7 @@ object DataSource {
             destacado = true
         )
     )
-    
+
     // ========== FUNCIÓN PARA OBTENER DESTACADOS ==========
     fun getDestacados(): List<Any> {
         val destacados = mutableListOf<Any>()
