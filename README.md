@@ -1,172 +1,227 @@
-# 🌍 TravelMarket
+# 🌍 TravelMarket - Lima Juegos Panamericanos 2025
 
 
-![Versión](https://img.shields.io/badge/version-1.0-blue) ![Licencia](https://img.shields.io/badge/license-MIT-green)
+<p align="center">
+	<img src="https://img.shields.io/badge/Platform-Android-green.svg" alt="Platform">
+	<img src="https://img.shields.io/badge/Language-Kotlin-blue.svg" alt="Language">
+	<img src="https://img.shields.io/badge/UI-Jetpack%20Compose-brightgreen.svg" alt="UI">
+	<img src="https://img.shields.io/badge/Architecture-MVVM-orange.svg" alt="Architecture">
+	<img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+</p>
 
-Aplicación móvil desarrollada en **Kotlin** con **Jetpack Compose** que ofrece a los turistas una experiencia interactiva para explorar lugares, eventos, gastronomía y servicios locales durante los Juegos Panamericanos.  
-El proyecto combina diseño atractivo, arquitectura modular y una interfaz fluida inspirada en **Material Design 3**.
+## 📱 Descripción
 
----
+**TravelMarket** es una aplicación móvil Android diseñada para turistas y visitantes que asisten a los Juegos Panamericanos en Lima, Perú. La aplicación proporciona información completa sobre lugares turísticos, eventos deportivos, gastronomía local y opciones de transporte, facilitando la experiencia de los usuarios durante su estancia en la capital peruana.
 
+### 🎯 Propósito
 
-## 1. Descripción General
-
-**TravelMarket** nace con el propósito de facilitar la experiencia de los visitantes durante los Juegos Panamericanos, permitiendo descubrir actividades y sitios destacados en una sola plataforma.  
-La aplicación integra pantallas principales de **Inicio**, **Detalle** y **Perfil**, ofreciendo navegación dinámica, datos organizados y una estructura adaptable a futuros servicios (favoritos, mapas, filtrado, entre otros).
-
----
-
-## 2. Objetivo General
-
-Desarrollar una aplicación móvil moderna y funcional que brinde información relevante a los turistas sobre lugares, eventos y servicios locales, siguiendo principios de **usabilidad, diseño y buenas prácticas** en desarrollo Android.
+Conectar a turistas con los mejores servicios y experiencias de Lima durante los Juegos Panamericanos 2025, ofreciendo una plataforma centralizada y fácil de usar para explorar la ciudad.
 
 ---
 
-## 3. Objetivos Específicos
-
-- Implementar una arquitectura clara basada en los principios de separación de capas (**UI**, **Data**, **Model**, **Navigation**).  
-- Utilizar **Jetpack Compose** para construir una interfaz declarativa coherente con **Material Design 3**.  
-- Gestionar la navegación de pantallas mediante **Navigation Compose**.  
-- Presentar datos dinámicos desde fuentes locales (listas o JSON simulado).  
-- Fomentar el trabajo colaborativo y el control de versiones mediante **GitHub**.  
-- Entregar un producto documentado, funcional y alineado con el prototipo de diseño en **Figma**.
-
----
-
-## 4. Público Objetivo
-
-Turistas nacionales e internacionales asistentes a los Juegos Panamericanos que deseen conocer rápidamente los lugares más representativos, eventos y experiencias gastronómicas de la ciudad anfitriona.
-
----
-
-## 5. Equipo de Desarrollo
-
-| Rol                  | Integrante                        | Responsabilidades |
-|----------------------|-----------------------------------|------------------|
-| Líder Técnico        | Rodrigo Salva                     | Configuración del proyecto, estructura base, control de versiones y soporte técnico. |
-| Diseñador UI/UX      | Rafael Chuco                      | Diseño del prototipo en Figma, estilos visuales y definición de componentes de interfaz. |
-| Tester / Documentador| Miguel Carasas                    | Pruebas funcionales, control de calidad y documentación final del proyecto. |
-
----
-
-## 6. Prototipo y Diseño
-
-El diseño inicial del proyecto fue desarrollado en **Figma**, priorizando la **simplicidad**, **legibilidad** y **accesibilidad** de la información para ofrecer una experiencia de usuario fluida e intuitiva.  
-
-El prototipo se centra en mostrar de manera clara los principales contenidos relacionados con los **Juegos Panamericanos en Perú**, organizados en distintas categorías: *Lugares*, *Eventos*, *Gastronomía* y *Transporte*.
-
-### Descripción visual del prototipo
-
-El diseño utiliza un **estilo limpio y moderno**, con fondo oscuro y componentes blancos que resaltan el contenido principal (imágenes y texto).  
-El encabezado rojo con el logotipo de **TravelMarket** y la barra de búsqueda ofrecen una navegación directa e intuitiva.  
-
-Cada tarjeta incluye:
-- Una **imagen representativa** del lugar, evento o servicio.
-- El **nombre** y una **breve descripción**.
-- La **ubicación geográfica** o tipo de categoría (por ejemplo: *Aerolinea*, *Pollería*, *Turístico*).
-- Un **ícono de calificación**, que refuerza la confiabilidad del contenido.
-
-### Pantallas principales
-
-- **Inicio:** Muestra un mensaje de bienvenida, una sección de destacados y las categorías principales.  
-- **Lugares:** Presenta atractivos turísticos como Machu Picchu, el Malecón de Miraflores y la Plaza Mayor de Lima.  
-- **Eventos:** Contiene actividades deportivas de los Juegos Panamericanos, como atletismo, ciclismo y vóley.  
-- **Gastronomía:** Incluye restaurantes reconocidos como *La Granja Azul*, *Maido* y *Central*, con su respectiva descripción.  
-- **Transporte:** Ofrece información sobre medios de transporte como *LATAM Airlines*, *Metropolitano* y *Mirabus*.
-
-### Identidad visual
-
-- **Color principal:** Rojo (#FF0000), utilizado en la barra superior y acentos.  
-- **Colores secundarios:** Blanco, gris claro y negro, para mantener contraste y legibilidad.  
-- **Tipografía:** Sans-serif moderna, optimizada para lectura en pantallas móviles.  
-- **Estilo de íconos:** Minimalistas, con un trazo fino que refuerza la coherencia visual.
+## ✨ Características Principales
+## 🎉 Pantalla Inicial (Welcome)
+- Logo de TravelMarket
+- Botones: Iniciar sesión y Registrarse
+<img width="379" height="840" alt="image" src="https://github.com/user-attachments/assets/64a0279b-6057-4533-8615-5f8d75de5894" />
 
 
-### Enlace al prototipo
-[TravelMarket](https://www.figma.com/design/iXDlfKNys1IFMhit5DE8yc/TravelMarket?node-id=0-1&p=f&t=EKghsLoh65vKhPa7-0)
+### 🔐 Sistema de Autenticación
+- Pantalla de Login con validación
+- Opción "Recordarme"
+- Integración futura con redes sociales
+
+
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/3e34d67e-d439-4de3-b5ab-931426866939" />
+
+
+### 🏠 Pantalla de Inicio
+- Banner de bienvenida personalizado
+- Sección de elementos destacados con mejor valoración
+- Navegación rápida a todas las categorías
+  <img width="399" height="833" alt="image" src="https://github.com/user-attachments/assets/4356d4a5-342e-4c5a-8afc-4f3bd3711991" />
+
+  <img width="373" height="826" alt="image" src="https://github.com/user-attachments/assets/78298aa2-efb6-4f8d-a6a3-3c316b7edad2" />
+
+### 🗺️ Lugares Turísticos
+- Machu Picchu, Malecón de Miraflores, Plaza Mayor de Lima
+- Información detallada: ubicación, categoría, horario, precio
+- Sistema de calificación con estrellas
+  <img width="373" height="826" alt="image" src="https://github.com/user-attachments/assets/6ed4e784-1b7a-4ebe-b38b-56ed59ba4ea0" />
+
+### 🏆 Eventos Deportivos
+- Calendario de eventos Panamericanos
+- Atletismo, Ciclismo de ruta, Vóley
+- Información de estadios, fechas, horarios y precios de entradas
+<img width="385" height="823" alt="image" src="https://github.com/user-attachments/assets/e5ac8e71-cc3a-4483-9b6e-03ac354ec34e" />
+
+### 🍽️ Gastronomía Peruana
+- Restaurantes destacados: La Granja Azul, Maido, Central
+- Tipos de cocina, especialidades y horarios
+- Precios promedios y ubicaciones
+<img width="386" height="821" alt="image" src="https://github.com/user-attachments/assets/da896d27-7cb2-4ec0-99cc-2249d0a3ab5a" />
+
+### 🚌 Transporte
+- LATAM Airlines Perú, Metropolitano, Mirabus
+- Rutas, horarios y tarifas
+- Información de acceso y ubicaciones
+<img width="383" height="831" alt="image" src="https://github.com/user-attachments/assets/89971193-cf95-4107-8f6d-f26ae9a89f22" />
+
+### 📄 Pantalla de Detalle
+- Información completa de cada elemento seleccionado
+- Descripciones extendidas y datos específicos
+- Navegación intuitiva con botón de retorno
+<img width="348" height="720" alt="image" src="https://github.com/user-attachments/assets/be57372b-5606-4d6b-ba4a-1db848cdff1e" />
 
 
 ---
 
-## 7. Arquitectura del Proyecto
+## 🛠️ Tecnologías y Herramientas
 
-El proyecto se basa en una arquitectura modular, separando las responsabilidades en capas para facilitar la escalabilidad y el mantenimiento:
+### Lenguaje y Framework
+- Kotlin 2.0+ (proyecto configurado con 2.0.21)
+- Jetpack Compose (UI moderna y declarativa)
+- Material Design 3
 
-<img width="900" height="220" alt="image" src="https://github.com/user-attachments/assets/7ba7a17e-53b2-4422-a727-912081536b50" />
+### Arquitectura
+- MVVM (Model-View-ViewModel)
+- Repository Pattern
+- StateFlow para gestión de estado reactiva
+- Coroutines para asincronía
 
+### Bibliotecas Principales
 
----
+- AndroidX Core KTX: `androidx.core:core-ktx:1.17.0`
+- Lifecycle Runtime KTX: `androidx.lifecycle:lifecycle-runtime-ktx:2.9.4`
+- Activity Compose: `androidx.activity:activity-compose:1.11.0`
+- Compose BOM: `androidx.compose:compose-bom:2024.09.00`
+	- UI, UI Graphics, UI Tooling Preview, Material3
+- Navigation Compose: `androidx.navigation:navigation-compose:2.8.2`
+- Carga de imágenes: `io.coil-kt:coil-compose:2.4.0`
+- Testing:
+	- JUnit 4: `junit:junit:4.13.2`
+	- AndroidX Test JUnit: `androidx.test.ext:junit:1.3.0`
+	- Espresso: `androidx.test.espresso:espresso-core:3.7.0`
+	- Compose UI Test JUnit4 y Manifest
 
-## 8. TECNOLOGÍAS Y HERRAMIENTAS
-
-| Tecnología / Herramienta | Propósito |
-|---------------------------|------------|
-| Kotlin | Lenguaje principal de desarrollo. |
-| Jetpack Compose | Creación de interfaces reactivas y modernas. |
-| Navigation Compose | Gestión de rutas y navegación entre pantallas. |
-| Material Design 3 | Base de diseño visual y componentes estilizados. |
-| Android Studio | Entorno de desarrollo integrado. |
-| Figma | Diseño del prototipo visual del proyecto. |
-| Git / GitHub | Control de versiones y colaboración en equipo. |
-
----
-
-## 9. PLAN DE TRABAJO
-
-| Día | Objetivo | Actividades Clave | Entregable |
-|------|-----------|------------------|-------------|
-| 1 | Planificación y diseño | Reunión, definición de roles, creación de prototipo y README inicial | Repositorio + enlace Figma |
-| 2 | Estructura base | Configuración del entorno, paquetes, navegación inicial | Proyecto base funcional |
-| 3 | Interfaz de usuario | Implementación de pantallas principales (Home, Detalle, Perfil) | UI completa según Figma |
-| 4 | Lógica y datos | Creación de modelos, listas locales y conexión de datos | App con datos simulados |
-| 5 | Integración final | Búsqueda, filtrado, pruebas y merge de ramas | Versión candidata v1.0 |
-| 6 | Presentación | Documentación completa, release y demostración final | Proyecto final en GitHub |
+> Nota: Configuración basada en `gradle/libs.versions.toml` y `app/build.gradle.kts` del proyecto.
 
 ---
 
-## 10. CONTROL DE VERSIONES
+## ⚙️ Requisitos, Instalación y Ejecución
 
-| Rama | Función |
-|-------|----------|
-| main | Contiene la versión estable del proyecto. |
-| develop | Rama base para integración de nuevas características. |
-| feature| Ramas individuales para el desarrollo de cada integrante. |
+### Requisitos
+- Android Studio (versión reciente)
+- JDK 11
+- Android SDK 24+ (minSdk 24), compileSdk 36, targetSdk 36
 
----
+### Pasos
+1) Clona el repositorio y ábrelo en Android Studio.
+2) Sincroniza Gradle y descarga dependencias.
+3) Conecta un dispositivo o inicia un emulador.
+4) Ejecuta la app desde el botón "Run" de Android Studio.
 
-## 11. REQUERIMIENTOS FUNCIONALES PRINCIPALES
+Opcional por terminal (Linux/macOS):
 
-| Código | Descripción |
-|--------|--------------|
-| RF01 | Visualizar pantalla de inicio con accesos a categorías. |
-| RF02 | Mostrar detalles de cada elemento (nombre, imagen, descripción, ubicación). |
-| RF06 | Desarrollar el sistema en Android Studio con Kotlin y Jetpack Compose. |
-| RF08 | Implementar navegación de pantallas con Navigation Compose. |
-| RF11 | Mostrar lista de elementos con LazyColumn o Grid. |
-| RF17 | Cargar información dinámica desde una fuente local (lista o JSON). |
-| RF21 | Permitir búsqueda o filtrado de elementos. |
-| RF27 | Ejecutar correctamente la aplicación en un emulador o dispositivo físico. |
-| RF30 | Representar fielmente el prototipo Figma en la versión final. |
+```bash
+./gradlew assembleDebug
+./gradlew installDebug
+```
 
 ---
 
-## 12. DATOS DEL CURSO
+## 🧭 Estructura del Proyecto (MVVM)
 
-| Campo | Detalle |
-|--------|----------|
-| Curso | Programación en Móviles |
-| Docente | Juan León |
-| Duración | 6 días |
-| Modalidad | Trabajo colaborativo (equipos de 2 o 3 estudiantes) |
-| Versión actual | v1.0 – Proyecto Final |
+```
+app/src/main/java/com/proyecto/travelmarket/
+├── data/
+├── model/
+│   ├── Evento.kt
+│   ├── Lugar.kt
+│   ├── Restaurante.kt
+│   ├── Transporte.kt
+│   └── User.kt
+├── navigation/
+│   ├── Screen.kt
+│   ├── BottomNavItem.kt
+│   └── NavGraph.kt
+├── ui/
+│   ├── MainScreen.kt
+│   ├── components/
+│   │   ├── LoginScreen.kt
+│   │   ├── BottomNavigationBar.kt
+│   │   ├── FavoritosScreen.kt
+│   │   ├── PerfilScreen.kt
+│   │   ├── RegisterScreen.kt
+│   │   └── WelcomeScreen.kt
+│   └── screens/
+│       ├── HomeScreen.kt
+│       ├── LugaresScreen.kt
+│       ├── EventosScreen.kt
+│       ├── GastronomiaScreen.kt
+│       ├── TransporteScreen.kt
+│       └── DetalleScreen.kt
+├── viewmodel/
+│   ├── AuthViewModel.kt
+│   ├── AuthViewModelFactory.kt
+│   ├── DetalleViewModel.kt
+│   ├── EventosViewModel.kt
+│   ├── FavoritosViewModel.kt
+│   ├── GastronomiaViewModel.kt
+│   ├── HomeViewModel.kt
+│   ├── LugaresViewModel.kt
+│   └── TransporteViewModel.kt
+└── MainActivity.kt
+
+```
+
+> La app utiliza Navigation Compose para la gestión de rutas y Jetpack Compose para la UI.
 
 ---
 
-## 13. CONCLUSIÓN
+## 🎨 Prototipo (Figma)
 
-**TravelMarket** representa la aplicación práctica de los conocimientos adquiridos en el curso de desarrollo móvil con Android, integrando diseño, arquitectura, trabajo en equipo y control de versiones.
+- Enlace: https://www.figma.com/design/iXDlfKNys1IFMhit5DE8yc/TravelMarket?node-id=0-1&p=f
 
-> “Explora los Juegos Panamericanos con una sola aplicación.  
-> TravelMarket: tu guía digital para descubrir lo mejor de cada destino.”
+---
+## Enlace del Video
+
+-Enlace: https://drive.google.com/drive/folders/1pIltqhOZbnY02HQ9REAhI0c8WdYQcFPO?usp=sharing
+
+## 🧩 Roadmap
+
+- Favoritos y listas personalizadas
+- Integración con Google Maps (mapa y rutas)
+- Búsqueda avanzada y filtros por categoría
+- Modo offline (caché local)
+- Inicio de sesión con Google/Redes sociales
+- Notificaciones locales para recordatorios de eventos
+- Internacionalización (ES/EN)
+
+---
+
+## 🤝 Cómo Contribuir
+
+1) Haz un fork del repositorio
+2) Crea una rama feature: `git checkout -b feature/nombre`
+3) Realiza tus cambios con buenas prácticas (Kotlin/Compose)
+4) Abre un Pull Request hacia la rama correspondiente
+
+Sugerencias: incluye descripción clara, capturas de pantalla y, si aplica, tests.
+
+---
+
+## 📝 Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE si está disponible en el repositorio.
+
+---
+
+## 👥 Créditos
+
+- Rodrigo Salva — Liderazgo técnico y configuración
+- Rafael Chuco — Diseño UI/UX (Figma)
+- Miguel Carasas — QA y documentación
+
 
 
