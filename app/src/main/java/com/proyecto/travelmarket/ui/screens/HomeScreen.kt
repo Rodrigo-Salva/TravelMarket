@@ -47,6 +47,90 @@ fun HomeScreen(
     val scope = rememberCoroutineScope()
     val currentUser by authViewModel.currentUser.collectAsState()
 
+    // Elementos destacados ordenados
+    val destacadosOrdenados = remember {
+        listOf(
+            DataSource.lugares.filter { it.destacado },
+            DataSource.eventos.filter { it.destacado },
+            DataSource.restaurantes.filter { it.destacado },
+            DataSource.transportes.filter { it.destacado }
+        ).flatten()
+    }
+
+    // Filtrar elementos destacados por búsqueda
+    val destacadosFiltrados = remember(destacadosOrdenados, searchText) {
+        if (searchText.isNotEmpty()) {
+            destacadosOrdenados.filter { item ->
+                when (item) {
+                    is Lugar -> 
+                        item.nombre.contains(searchText, ignoreCase = true) ||
+                        item.descripcion.contains(searchText, ignoreCase = true) ||
+                        item.categoria.contains(searchText, ignoreCase = true) ||
+                        item.ubicacion.contains(searchText, ignoreCase = true)
+                    is Evento -> 
+                        item.nombre.contains(searchText, ignoreCase = true) ||
+                        item.descripcion.contains(searchText, ignoreCase = true) ||
+                        item.deporte.contains(searchText, ignoreCase = true) ||
+                        item.estadio.contains(searchText, ignoreCase = true)
+                    is Restaurante -> 
+                        item.nombre.contains(searchText, ignoreCase = true) ||
+                        item.descripcion.contains(searchText, ignoreCase = true) ||
+                        item.tipoCocina.contains(searchText, ignoreCase = true) ||
+                        item.ubicacion.contains(searchText, ignoreCase = true)
+                    is Transporte -> 
+                        item.nombre.contains(searchText, ignoreCase = true) ||
+                        item.descripcion.contains(searchText, ignoreCase = true) ||
+                        item.tipo.contains(searchText, ignoreCase = true) ||
+                        item.ubicacion.contains(searchText, ignoreCase = true)
+                    else -> false
+                }
+            }
+        } else {
+            destacadosOrdenados
+        }
+    }
+
+    // Filtrar favoritos por búsqueda
+    val favoritosFiltrados = remember(favoritosViewModel.favoritos, searchText) {
+        if (searchText.isNotEmpty()) {
+            favoritosViewModel.favoritos.filter { favItem ->
+                val item = when (favItem.tipo) {
+                    "lugar" -> DataSource.lugares.find { it.id == favItem.id }
+                    "evento" -> DataSource.eventos.find { it.id == favItem.id }
+                    "restaurante" -> DataSource.restaurantes.find { it.id == favItem.id }
+                    "transporte" -> DataSource.transportes.find { it.id == favItem.id }
+                    else -> null
+                }
+                
+                when (item) {
+                    is Lugar -> 
+                        item.nombre.contains(searchText, ignoreCase = true) ||
+                        item.descripcion.contains(searchText, ignoreCase = true) ||
+                        item.categoria.contains(searchText, ignoreCase = true) ||
+                        item.ubicacion.contains(searchText, ignoreCase = true)
+                    is Evento -> 
+                        item.nombre.contains(searchText, ignoreCase = true) ||
+                        item.descripcion.contains(searchText, ignoreCase = true) ||
+                        item.deporte.contains(searchText, ignoreCase = true) ||
+                        item.estadio.contains(searchText, ignoreCase = true)
+                    is Restaurante -> 
+                        item.nombre.contains(searchText, ignoreCase = true) ||
+                        item.descripcion.contains(searchText, ignoreCase = true) ||
+                        item.tipoCocina.contains(searchText, ignoreCase = true) ||
+                        item.ubicacion.contains(searchText, ignoreCase = true)
+                    is Transporte -> 
+                        item.nombre.contains(searchText, ignoreCase = true) ||
+                        item.descripcion.contains(searchText, ignoreCase = true) ||
+                        item.tipo.contains(searchText, ignoreCase = true) ||
+                        item.ubicacion.contains(searchText, ignoreCase = true)
+                    else -> false
+                }
+            }
+        } else {
+            favoritosViewModel.favoritos
+        }
+    }
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = { 
@@ -177,16 +261,8 @@ fun HomeScreen(
                 }
             }
 
-            // Elementos destacados ordenados
-            val destacadosOrdenados = listOf(
-                DataSource.lugares.filter { it.destacado },
-                DataSource.eventos.filter { it.destacado },
-                DataSource.restaurantes.filter { it.destacado },
-                DataSource.transportes.filter { it.destacado }
-            ).flatten()
-
             // Sección de Favoritos
-            if (favoritosViewModel.favoritos.isNotEmpty()) {
+            if (favoritosFiltrados.isNotEmpty()) {
                 item {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -208,8 +284,8 @@ fun HomeScreen(
                     }
                 }
 
-                // Mostrar solo los primeros 2 favoritos
-                items(favoritosViewModel.favoritos.take(2)) { favItem ->
+                // Mostrar solo los primeros 2 favoritos filtrados
+                items(favoritosFiltrados.take(2)) { favItem ->
                     val item = when (favItem.tipo) {
                         "lugar" -> DataSource.lugares.find { it.id == favItem.id }
                         "evento" -> DataSource.eventos.find { it.id == favItem.id }
@@ -273,8 +349,8 @@ fun HomeScreen(
                     }
                 }
                 
-                // Botón "Ver más" si hay más de 2 favoritos
-                if (favoritosViewModel.favoritos.size > 2) {
+                // Botón "Ver más" si hay más de 2 favoritos filtrados
+                if (favoritosFiltrados.size > 2) {
                     item {
                         Button(
                             onClick = { navController.navigate("favoritos") },
@@ -289,7 +365,7 @@ fun HomeScreen(
                             border = BorderStroke(2.dp, Rojo)
                         ) {
                             Text(
-                                text = "Ver más (${favoritosViewModel.favoritos.size - 2} más)",
+                                text = "Ver más (${favoritosFiltrados.size - 2} más)",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp
                             )
@@ -328,7 +404,7 @@ fun HomeScreen(
                 }
             }
 
-            items(destacadosOrdenados) { item ->
+            items(destacadosFiltrados) { item ->
                 when (item) {
                     is Lugar -> ItemCard(
                         imagenRes = ImageUtils.getImageRes(item.imagen),
