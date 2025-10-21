@@ -23,44 +23,56 @@ Conectar a turistas con los mejores servicios y experiencias de Lima durante los
 ## 🎉 Pantalla Inicial (Welcome)
 - Logo de TravelMarket
 - Botones: Iniciar sesión y Registrarse
-![alt text](image-7.png)
+<img width="379" height="840" alt="image" src="https://github.com/user-attachments/assets/64a0279b-6057-4533-8615-5f8d75de5894" />
+
 
 ### 🔐 Sistema de Autenticación
 - Pantalla de Login con validación
 - Opción "Recordarme"
 - Integración futura con redes sociales
 
-![alt text](image-8.png)
+
+<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/3e34d67e-d439-4de3-b5ab-931426866939" />
+
+
 ### 🏠 Pantalla de Inicio
 - Banner de bienvenida personalizado
 - Sección de elementos destacados con mejor valoración
 - Navegación rápida a todas las categorías
-![alt text](image-1.png)
+  <img width="399" height="833" alt="image" src="https://github.com/user-attachments/assets/4356d4a5-342e-4c5a-8afc-4f3bd3711991" />
+
+  <img width="373" height="826" alt="image" src="https://github.com/user-attachments/assets/78298aa2-efb6-4f8d-a6a3-3c316b7edad2" />
+
 ### 🗺️ Lugares Turísticos
 - Machu Picchu, Malecón de Miraflores, Plaza Mayor de Lima
 - Información detallada: ubicación, categoría, horario, precio
 - Sistema de calificación con estrellas
-![alt text](image-2.png)
+  <img width="373" height="826" alt="image" src="https://github.com/user-attachments/assets/6ed4e784-1b7a-4ebe-b38b-56ed59ba4ea0" />
+
 ### 🏆 Eventos Deportivos
 - Calendario de eventos Panamericanos
 - Atletismo, Ciclismo de ruta, Vóley
 - Información de estadios, fechas, horarios y precios de entradas
-![alt text](image-3.png)
+<img width="385" height="823" alt="image" src="https://github.com/user-attachments/assets/e5ac8e71-cc3a-4483-9b6e-03ac354ec34e" />
+
 ### 🍽️ Gastronomía Peruana
 - Restaurantes destacados: La Granja Azul, Maido, Central
 - Tipos de cocina, especialidades y horarios
 - Precios promedios y ubicaciones
-![alt text](image-4.png)
+<img width="386" height="821" alt="image" src="https://github.com/user-attachments/assets/da896d27-7cb2-4ec0-99cc-2249d0a3ab5a" />
+
 ### 🚌 Transporte
 - LATAM Airlines Perú, Metropolitano, Mirabus
 - Rutas, horarios y tarifas
 - Información de acceso y ubicaciones
-![alt text](image-5.png)
+<img width="383" height="831" alt="image" src="https://github.com/user-attachments/assets/89971193-cf95-4107-8f6d-f26ae9a89f22" />
+
 ### 📄 Pantalla de Detalle
 - Información completa de cada elemento seleccionado
 - Descripciones extendidas y datos específicos
 - Navegación intuitiva con botón de retorno
-![alt text](image-6.png)
+<img width="348" height="720" alt="image" src="https://github.com/user-attachments/assets/be57372b-5606-4d6b-ba4a-1db848cdff1e" />
+
 
 ---
 
@@ -210,5 +222,6 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE si está d
 - Rodrigo Salva — Liderazgo técnico y configuración
 - Rafael Chuco — Diseño UI/UX (Figma)
 - Miguel Carasas — QA y documentación
+
 
 
