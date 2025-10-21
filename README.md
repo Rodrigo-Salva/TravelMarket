@@ -1,4 +1,5 @@
-# � TravelMarket - Lima Juegos Panamericanos 2025
+# 🌍 TravelMarket - Lima Juegos Panamericanos 2025
+
 
 <p align="center">
 	<img src="https://img.shields.io/badge/Platform-Android-green.svg" alt="Platform">
@@ -19,41 +20,47 @@ Conectar a turistas con los mejores servicios y experiencias de Lima durante los
 ---
 
 ## ✨ Características Principales
-
-### 🏠 Pantalla de Inicio
-- Banner de bienvenida personalizado
-- Sección de elementos destacados con mejor valoración
-- Navegación rápida a todas las categorías
-
-### 🗺️ Lugares Turísticos
-- Machu Picchu, Malecón de Miraflores, Plaza Mayor de Lima
-- Información detallada: ubicación, categoría, horario, precio
-- Sistema de calificación con estrellas
-
-### 🏆 Eventos Deportivos
-- Calendario de eventos Panamericanos
-- Atletismo, Ciclismo de ruta, Vóley
-- Información de estadios, fechas, horarios y precios de entradas
-
-### 🍽️ Gastronomía Peruana
-- Restaurantes destacados: La Granja Azul, Maido, Central
-- Tipos de cocina, especialidades y horarios
-- Precios promedios y ubicaciones
-
-### 🚌 Transporte
-- LATAM Airlines Perú, Metropolitano, Mirabus
-- Rutas, horarios y tarifas
-- Información de acceso y ubicaciones
-
-### 📄 Pantalla de Detalle
-- Información completa de cada elemento seleccionado
-- Descripciones extendidas y datos específicos
-- Navegación intuitiva con botón de retorno
+## 🎉 Pantalla Inicial (Welcome)
+- Logo de TravelMarket
+- Botones: Iniciar sesión y Registrarse
+![alt text](image-7.png)
 
 ### 🔐 Sistema de Autenticación
 - Pantalla de Login con validación
 - Opción "Recordarme"
 - Integración futura con redes sociales
+
+![alt text](image-8.png)
+### 🏠 Pantalla de Inicio
+- Banner de bienvenida personalizado
+- Sección de elementos destacados con mejor valoración
+- Navegación rápida a todas las categorías
+![alt text](image-1.png)
+### 🗺️ Lugares Turísticos
+- Machu Picchu, Malecón de Miraflores, Plaza Mayor de Lima
+- Información detallada: ubicación, categoría, horario, precio
+- Sistema de calificación con estrellas
+![alt text](image-2.png)
+### 🏆 Eventos Deportivos
+- Calendario de eventos Panamericanos
+- Atletismo, Ciclismo de ruta, Vóley
+- Información de estadios, fechas, horarios y precios de entradas
+![alt text](image-3.png)
+### 🍽️ Gastronomía Peruana
+- Restaurantes destacados: La Granja Azul, Maido, Central
+- Tipos de cocina, especialidades y horarios
+- Precios promedios y ubicaciones
+![alt text](image-4.png)
+### 🚌 Transporte
+- LATAM Airlines Perú, Metropolitano, Mirabus
+- Rutas, horarios y tarifas
+- Información de acceso y ubicaciones
+![alt text](image-5.png)
+### 📄 Pantalla de Detalle
+- Información completa de cada elemento seleccionado
+- Descripciones extendidas y datos específicos
+- Navegación intuitiva con botón de retorno
+![alt text](image-6.png)
 
 ---
 
@@ -117,21 +124,43 @@ Opcional por terminal (Linux/macOS):
 app/src/main/java/com/proyecto/travelmarket/
 ├── data/
 ├── model/
+│   ├── Evento.kt
+│   ├── Lugar.kt
+│   ├── Restaurante.kt
+│   ├── Transporte.kt
+│   └── User.kt
 ├── navigation/
 │   ├── Screen.kt
 │   ├── BottomNavItem.kt
 │   └── NavGraph.kt
 ├── ui/
 │   ├── MainScreen.kt
+│   ├── components/
+│   │   ├── LoginScreen.kt
+│   │   ├── BottomNavigationBar.kt
+│   │   ├── FavoritosScreen.kt
+│   │   ├── PerfilScreen.kt
+│   │   ├── RegisterScreen.kt
+│   │   └── WelcomeScreen.kt
 │   └── screens/
-│       ├── LoginScreen.kt
 │       ├── HomeScreen.kt
 │       ├── LugaresScreen.kt
 │       ├── EventosScreen.kt
 │       ├── GastronomiaScreen.kt
 │       ├── TransporteScreen.kt
 │       └── DetalleScreen.kt
+├── viewmodel/
+│   ├── AuthViewModel.kt
+│   ├── AuthViewModelFactory.kt
+│   ├── DetalleViewModel.kt
+│   ├── EventosViewModel.kt
+│   ├── FavoritosViewModel.kt
+│   ├── GastronomiaViewModel.kt
+│   ├── HomeViewModel.kt
+│   ├── LugaresViewModel.kt
+│   └── TransporteViewModel.kt
 └── MainActivity.kt
+
 ```
 
 > La app utiliza Navigation Compose para la gestión de rutas y Jetpack Compose para la UI.
@@ -143,6 +172,9 @@ app/src/main/java/com/proyecto/travelmarket/
 - Enlace: https://www.figma.com/design/iXDlfKNys1IFMhit5DE8yc/TravelMarket?node-id=0-1&p=f
 
 ---
+## Enlace del Video
+
+-Enlace: https://drive.google.com/drive/folders/1pIltqhOZbnY02HQ9REAhI0c8WdYQcFPO?usp=sharing
 
 ## 🧩 Roadmap
 
